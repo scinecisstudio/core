@@ -1,6 +1,10 @@
 # Hivemind
 
 ## Session Summary (2026-03-10)
+- Website screenshot gallery updated in `C:\Users\Pritesh CTO\Documents\core\index.html`, `styles.css`, and `script.js`.
+- Website now uses app screenshots from `assets/screenshots/phone`, `assets/screenshots/7_inch`, and `assets/screenshots/10_inch`.
+- Main website gallery currently shows phone, 7-inch tablet, and 10-inch tablet screenshots in horizontal pager/carousel sections.
+- Dedicated full gallery page exists at `C:\Users\Pritesh CTO\Documents\core\screenshots.html`.
 - Canonical workspace root confirmed as `C:\Users\Pritesh CTO\Documents\core`.
 - Canonical Android app path confirmed as `C:\Users\Pritesh CTO\Documents\core\coreapp`.
 - Persistent relationship note: `coreapp` is the Android app project for this website repo and should be treated as such in future tasks.
