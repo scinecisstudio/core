@@ -1,9 +1,11 @@
 # Core Launcher Play Data Safety Answer Sheet (Code-Based)
 
 Last reviewed: March 1, 2026
-Codebase audited: `C:\Users\prite\Documents\CoreApp`
+Codebase audited: `C:\Users\Pritesh CTO\Documents\core\coreapp`
 Package: `com.scinecis.launcher`
 Website distribution note: Play Store-only CTA on website (Direct APK option removed on March 1, 2026).
+Repository relationship note: `coreapp` is the Android app project for this website repository (`C:\Users\Pritesh CTO\Documents\core`).
+Execution constraint: Do not perform any write/update operation inside `C:\Users\Pritesh CTO\Documents\core\coreapp` unless explicitly authorized by the user in that session.
 
 ## Evidence Sources
 - App manifest: `app/src/main/AndroidManifest.xml`

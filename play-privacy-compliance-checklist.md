@@ -2,6 +2,8 @@
 
 Last updated: March 1, 2026
 Applies to: Core Launcher (`com.scinecis.launcher`)
+Repository relationship: Website project root is `C:\Users\Pritesh CTO\Documents\core` and its Android app project is `C:\Users\Pritesh CTO\Documents\core\coreapp`.
+Execution constraint: Do not perform any write/update operation inside `C:\Users\Pritesh CTO\Documents\core\coreapp` unless explicitly authorized by the user in that session.
 
 Use this checklist before every Play Store submission.
 

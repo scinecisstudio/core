@@ -1,10 +1,16 @@
 # Hivemind
 
+## Session Summary (2026-03-10)
+- Canonical workspace root confirmed as `C:\Users\Pritesh CTO\Documents\core`.
+- Canonical Android app path confirmed as `C:\Users\Pritesh CTO\Documents\core\coreapp`.
+- Persistent relationship note: `coreapp` is the Android app project for this website repo and should be treated as such in future tasks.
+- Authorization rule: no write/update operations are authorized inside `C:\Users\Pritesh CTO\Documents\core\coreapp` unless user explicitly grants permission in that session.
+
 ## Session Summary (2026-02-28)
 - User asked to create `hivemind.md` and store concise, token-efficient session memory.
 - Preference: keep carry-forward notes short so future chats need less re-explanation.
-- Workspace root: `C:\Users\prite\Documents\Core`.
-- Android app path on home PC: `C:\Users\prite\Documents\CoreApp`.
+- Workspace root: `C:\Users\Pritesh CTO\Documents\core`.
+- Android app path in this workspace: `C:\Users\Pritesh CTO\Documents\core\coreapp`.
 - Current session actions: created this file; added Core app privacy policy files at `C:\Users\prite\Documents\CoreApp\play-store\privacy-policy.md` and `C:\Users\prite\Documents\CoreApp\play-store\privacy-policy-site\index.html`; rolled back in-app privacy policy link/activity changes; added website-native privacy page at `C:\Users\prite\Documents\Core\privacy-policy.html`, linked it from website `index.html`, and expanded wording for Play Store-friendly disclosures (permissions, third parties, data usage, retention, user controls).
 - Active constraint: do not perform write operations under `C:\Users\prite\Documents\CoreApp\app` unless explicitly requested.
 
