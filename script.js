@@ -165,7 +165,7 @@ galleryPagers.forEach((scroller) => {
 
   indicatorWrap.replaceChildren(...dots);
   if (slideList.length > 1) {
-    const initialSlide = slideList[1];
+    const initialSlide = slideList[0];
     const initialLeft = initialSlide.offsetLeft - (scroller.clientWidth - initialSlide.clientWidth) / 2;
     scroller.scrollLeft = initialLeft;
   }
