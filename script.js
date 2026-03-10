@@ -62,7 +62,8 @@ if (navToggle && navLinks) {
 }
 
 const pagerButtons = document.querySelectorAll('.gallery-pager-btn');
-const tabletPagers = document.querySelectorAll('.gallery-grid-tablet');
+const galleryPagers = document.querySelectorAll('.gallery-grid-pager');
+const activeAnimations = new WeakMap();
 
 const getActiveSlideIndex = (scroller, slides) => {
   const viewportCenter = scroller.scrollLeft + scroller.clientWidth / 2;
@@ -100,7 +101,48 @@ const updatePagerIndicators = (scroller) => {
   });
 };
 
-tabletPagers.forEach((scroller) => {
+const easeInOutCubic = (t) => {
+  if (t < 0.5) {
+    return 4 * t * t * t;
+  }
+  return 1 - Math.pow(-2 * t + 2, 3) / 2;
+};
+
+const animateScrollTo = (scroller, targetLeft, durationMs) => {
+  const previousAnimation = activeAnimations.get(scroller);
+  if (previousAnimation) {
+    window.cancelAnimationFrame(previousAnimation);
+  }
+
+  const startLeft = scroller.scrollLeft;
+  const maxLeft = Math.max(0, scroller.scrollWidth - scroller.clientWidth);
+  const finalLeft = Math.max(0, Math.min(targetLeft, maxLeft));
+  const delta = finalLeft - startLeft;
+  if (Math.abs(delta) < 1) {
+    scroller.scrollLeft = finalLeft;
+    return;
+  }
+
+  const startTime = performance.now();
+  const step = (now) => {
+    const progress = Math.min(1, (now - startTime) / durationMs);
+    const eased = easeInOutCubic(progress);
+    scroller.scrollLeft = startLeft + delta * eased;
+
+    if (progress < 1) {
+      const id = window.requestAnimationFrame(step);
+      activeAnimations.set(scroller, id);
+    } else {
+      activeAnimations.delete(scroller);
+      updatePagerIndicators(scroller);
+    }
+  };
+
+  const id = window.requestAnimationFrame(step);
+  activeAnimations.set(scroller, id);
+};
+
+galleryPagers.forEach((scroller) => {
   if (!scroller.id) {
     return;
   }
@@ -111,6 +153,7 @@ tabletPagers.forEach((scroller) => {
   }
 
   const slides = scroller.querySelectorAll('.gallery-card');
+  const slideList = Array.from(slides);
   const dots = Array.from(slides, (_, idx) => {
     const dot = document.createElement('span');
     dot.className = 'gallery-pager-indicator';
@@ -121,14 +164,68 @@ tabletPagers.forEach((scroller) => {
   });
 
   indicatorWrap.replaceChildren(...dots);
-  if (slides.length > 1) {
-    const initialSlide = slides[1];
+  if (slideList.length > 1) {
+    const initialSlide = slideList[1];
     const initialLeft = initialSlide.offsetLeft - (scroller.clientWidth - initialSlide.clientWidth) / 2;
     scroller.scrollLeft = initialLeft;
   }
   scroller.addEventListener('scroll', () => updatePagerIndicators(scroller), { passive: true });
   window.addEventListener('resize', () => updatePagerIndicators(scroller));
   updatePagerIndicators(scroller);
+
+  if (slideList.length > 1) {
+    let autoScrollTimer = null;
+    let userPaused = false;
+
+    const scrollToIndex = (index) => {
+      const targetSlide = slideList[index];
+      const targetLeft = targetSlide.offsetLeft - (scroller.clientWidth - targetSlide.clientWidth) / 2;
+      animateScrollTo(scroller, targetLeft, 900);
+    };
+
+    const tick = () => {
+      if (userPaused) {
+        return;
+      }
+      const currentIndex = getActiveSlideIndex(scroller, slideList);
+      const nextIndex = (currentIndex + 1) % slideList.length;
+      scrollToIndex(nextIndex);
+    };
+
+    const startAutoScroll = () => {
+      if (autoScrollTimer !== null) {
+        return;
+      }
+      autoScrollTimer = window.setInterval(tick, 3000);
+    };
+
+    const stopAutoScroll = () => {
+      if (autoScrollTimer === null) {
+        return;
+      }
+      window.clearInterval(autoScrollTimer);
+      autoScrollTimer = null;
+    };
+
+    scroller.addEventListener('mouseenter', () => {
+      userPaused = true;
+      stopAutoScroll();
+    });
+    scroller.addEventListener('mouseleave', () => {
+      userPaused = false;
+      startAutoScroll();
+    });
+    scroller.addEventListener('touchstart', () => {
+      userPaused = true;
+      stopAutoScroll();
+    }, { passive: true });
+    scroller.addEventListener('touchend', () => {
+      userPaused = false;
+      startAutoScroll();
+    }, { passive: true });
+
+    startAutoScroll();
+  }
 });
 
 pagerButtons.forEach((button) => {
@@ -155,7 +252,6 @@ pagerButtons.forEach((button) => {
     const targetSlide = slides[targetIndex];
     const targetLeft = targetSlide.offsetLeft - (scroller.clientWidth - targetSlide.clientWidth) / 2;
 
-    scroller.scrollTo({ left: targetLeft, behavior: 'smooth' });
-    window.setTimeout(() => updatePagerIndicators(scroller), 280);
+    animateScrollTo(scroller, targetLeft, 700);
   });
 });

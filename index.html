@@ -100,7 +100,12 @@
       <div class="gallery-groups">
         <div class="gallery-device">
           <h3 class="gallery-device-title">Phone</h3>
-          <div class="gallery-grid">
+          <p class="gallery-scroll-note">Scroll horizontally to view all phone shots.</p>
+          <div class="gallery-pager-controls">
+            <button type="button" class="gallery-pager-btn" data-target="gallery-phone" data-dir="-1" aria-label="Previous phone screenshot">Prev</button>
+            <button type="button" class="gallery-pager-btn" data-target="gallery-phone" data-dir="1" aria-label="Next phone screenshot">Next</button>
+          </div>
+          <div id="gallery-phone" class="gallery-grid gallery-grid-phone gallery-grid-pager">
             <figure class="gallery-card screenshot-card">
               <img src="assets/screenshots/phone/Screenshot_20260301_000748.png" alt="Core app screenshot on phone device 1" loading="lazy" decoding="async" />
               <figcaption>Phone screenshot 1</figcaption>
@@ -113,7 +118,24 @@
               <img src="assets/screenshots/phone/Screenshot_20260301_000901.png" alt="Core app screenshot on phone device 3" loading="lazy" decoding="async" />
               <figcaption>Phone screenshot 3</figcaption>
             </figure>
+            <figure class="gallery-card screenshot-card">
+              <img src="assets/screenshots/phone/Screenshot_20260301_000924.png" alt="Core app screenshot on phone device 4" loading="lazy" decoding="async" />
+              <figcaption>Phone screenshot 4</figcaption>
+            </figure>
+            <figure class="gallery-card screenshot-card">
+              <img src="assets/screenshots/phone/Screenshot_20260301_000944.png" alt="Core app screenshot on phone device 5" loading="lazy" decoding="async" />
+              <figcaption>Phone screenshot 5</figcaption>
+            </figure>
+            <figure class="gallery-card screenshot-card">
+              <img src="assets/screenshots/phone/Screenshot_20260301_001009.png" alt="Core app screenshot on phone device 6" loading="lazy" decoding="async" />
+              <figcaption>Phone screenshot 6</figcaption>
+            </figure>
+            <figure class="gallery-card screenshot-card">
+              <img src="assets/screenshots/phone/Screenshot_20260307_161938.png" alt="Core app screenshot on phone device 7" loading="lazy" decoding="async" />
+              <figcaption>Phone screenshot 7</figcaption>
+            </figure>
           </div>
+          <div class="gallery-pager-indicators" data-for="gallery-phone" aria-hidden="true"></div>
         </div>
         <div class="gallery-device gallery-device-tablet">
           <h3 class="gallery-device-title">7-inch Tablet</h3>
@@ -122,7 +144,7 @@
             <button type="button" class="gallery-pager-btn" data-target="gallery-7inch" data-dir="-1" aria-label="Previous 7-inch tablet screenshot">Prev</button>
             <button type="button" class="gallery-pager-btn" data-target="gallery-7inch" data-dir="1" aria-label="Next 7-inch tablet screenshot">Next</button>
           </div>
-          <div id="gallery-7inch" class="gallery-grid gallery-grid-tablet">
+          <div id="gallery-7inch" class="gallery-grid gallery-grid-tablet gallery-grid-pager">
             <figure class="gallery-card screenshot-card tablet-card">
               <img src="assets/screenshots/7_inch/Screenshot_20260307_160258.png" alt="Core app screenshot on 7 inch tablet 1" loading="lazy" decoding="async" />
               <figcaption>7-inch screenshot 1</figcaption>
@@ -161,7 +183,7 @@
             <button type="button" class="gallery-pager-btn" data-target="gallery-10inch" data-dir="-1" aria-label="Previous 10-inch tablet screenshot">Prev</button>
             <button type="button" class="gallery-pager-btn" data-target="gallery-10inch" data-dir="1" aria-label="Next 10-inch tablet screenshot">Next</button>
           </div>
-          <div id="gallery-10inch" class="gallery-grid gallery-grid-tablet">
+          <div id="gallery-10inch" class="gallery-grid gallery-grid-tablet gallery-grid-pager">
             <figure class="gallery-card screenshot-card tablet-card">
               <img src="assets/screenshots/10_inch/Screenshot_20260307_162016.png" alt="Core app screenshot on 10 inch tablet 1" loading="lazy" decoding="async" />
               <figcaption>10-inch screenshot 1</figcaption>
