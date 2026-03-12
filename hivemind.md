@@ -11,6 +11,8 @@
 - Manual backup export/import is distinct from Android cloud/device-transfer backup and may include launcher settings/local data chosen by the user.
 - Android cloud/device-transfer backup exclusions for launcher prefs and launcher databases are disclosed.
 - Previous AD_ID / AdServices disclosure note is stale for current build inputs; current source manifest removes those permissions and current release merged manifest does not include them.
+- Synced Play Store screenshot sets from `C:\Users\Pritesh CTO\Documents\CoreApp\assets\play-store\phone`, `7_inch`, and `10_inch` into website asset folders under `C:\Users\Pritesh CTO\Documents\core\assets\screenshots\...`.
+- Updated website galleries in `C:\Users\Pritesh CTO\Documents\core\index.html` and `C:\Users\Pritesh CTO\Documents\core\screenshots.html` to use the Play Store-ready screenshot filenames and 8-image sets for each device class.
 
 ## Session Summary (2026-03-10)
 - Website screenshot gallery updated in `C:\Users\Pritesh CTO\Documents\core\index.html`, `styles.css`, and `script.js`.
