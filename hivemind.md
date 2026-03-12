@@ -1,5 +1,17 @@
 # Hivemind
 
+## Session Summary (2026-03-12)
+- User instruction: always update relevant `*.md` file(s) at the end of each completed task in this workspace.
+- Current verified Android app project path for privacy/compliance audits: `C:\Users\Pritesh CTO\Documents\CoreApp`.
+- Audited app manifest, merged release manifest, telemetry consent flow, backup rules, notification listener, accessibility service, weather repository, and settings/backup code from `C:\Users\Pritesh CTO\Documents\CoreApp`.
+- Updated website privacy policy at `C:\Users\Pritesh CTO\Documents\core\privacy-policy.html`.
+- Privacy policy changes aligned with current app behavior:
+- Telemetry/Firebase collection is opt-in and disabled by default until user consent is enabled in app settings.
+- Sensitive telemetry fields are filtered before analytics/crash logging.
+- Manual backup export/import is distinct from Android cloud/device-transfer backup and may include launcher settings/local data chosen by the user.
+- Android cloud/device-transfer backup exclusions for launcher prefs and launcher databases are disclosed.
+- Previous AD_ID / AdServices disclosure note is stale for current build inputs; current source manifest removes those permissions and current release merged manifest does not include them.
+
 ## Session Summary (2026-03-10)
 - Website screenshot gallery updated in `C:\Users\Pritesh CTO\Documents\core\index.html`, `styles.css`, and `script.js`.
 - Website now uses app screenshots from `assets/screenshots/phone`, `assets/screenshots/7_inch`, and `assets/screenshots/10_inch`.
