@@ -20,6 +20,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 body {
@@ -298,6 +299,147 @@ a:focus-visible,
   gap: 12px;
 }
 
+.gallery-groups {
+  margin-top: 20px;
+  display: grid;
+  gap: 20px;
+}
+
+.gallery-device {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: linear-gradient(180deg, #ffffff, #f6faff);
+  padding: 14px;
+}
+
+.gallery-device-title {
+  margin: 0;
+  font-size: 0.98rem;
+  letter-spacing: 0.02em;
+  color: #35516f;
+  font-family: "Sora", sans-serif;
+}
+
+.gallery-device .gallery-grid {
+  margin-top: 12px;
+}
+
+.gallery-scroll-note {
+  margin: 6px 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.gallery-pager-controls {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.gallery-pager-btn {
+  border: 1px solid #b8cae8;
+  background: #ffffff;
+  color: #244563;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.gallery-pager-btn:hover {
+  background: #f1f6ff;
+}
+
+.gallery-pager-indicators {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.gallery-pager-indicator {
+  width: 10px;
+  height: 4px;
+  border-radius: 999px;
+  background: #c8d8ee;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.gallery-pager-indicator.is-active {
+  background: #2f6ebf;
+  transform: scaleX(1.15);
+}
+
+.gallery-device-tablet {
+  background: linear-gradient(180deg, #f5f9ff, #edf4ff);
+  overflow: hidden;
+}
+
+.gallery-grid-pager {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-inline: clamp(10px, 3vw, 28px);
+  padding-bottom: 8px;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: clamp(10px, 3vw, 28px);
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  border-radius: 14px;
+  scrollbar-width: none;
+}
+
+.gallery-grid-pager::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery-grid-pager .gallery-card {
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  border-radius: 14px;
+}
+
+.gallery-grid-phone .gallery-card {
+  flex: 0 0 min(300px, calc(100% - clamp(70px, 18vw, 190px)));
+  min-width: 0;
+}
+
+.gallery-grid-phone .gallery-card img {
+  width: auto;
+  max-width: 100%;
+  height: 50vh;
+  margin: 0 auto;
+  padding-top: 12px;
+  aspect-ratio: auto;
+  object-fit: contain;
+  background: transparent;
+}
+
+.gallery-grid-phone .gallery-card figcaption {
+  text-align: center;
+}
+
+.gallery-grid-phone {
+  max-width: min(100%, 760px);
+  padding-inline: clamp(10px, 3vw, 28px);
+  scroll-padding-inline: clamp(10px, 3vw, 28px);
+  gap: 12px;
+}
+
+.gallery-grid-tablet .gallery-card {
+  flex: 0 0 min(860px, calc(100% - clamp(44px, 12vw, 140px)));
+  min-width: 0;
+}
+
 .gallery-card {
   margin: 0;
   border: 1px solid var(--line);
@@ -325,10 +467,32 @@ a:focus-visible,
   box-shadow: 0 12px 24px rgba(15, 45, 74, 0.1);
 }
 
+.tablet-card {
+  border-color: #c7d9f3;
+}
+
+.tablet-card img {
+  aspect-ratio: auto;
+  height: auto;
+  object-fit: contain;
+  background: linear-gradient(170deg, #e6f0ff, #d5e5ff);
+}
+
 .gallery-note {
   margin: 12px 0 0;
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+.full-gallery-grid {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.full-gallery-grid-tablet {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .feature-card,
@@ -509,6 +673,14 @@ a:focus-visible,
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .full-gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery-grid-pager {
+    max-width: 100%;
+  }
+
   .download-meta {
     grid-template-columns: 1fr;
   }
@@ -566,6 +738,19 @@ a:focus-visible,
   .gallery-grid,
   .stat-grid {
     grid-template-columns: 1fr;
+  }
+
+  .full-gallery-grid,
+  .full-gallery-grid-tablet {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-grid-pager {
+    max-width: 100%;
+  }
+
+  .gallery-device {
+    padding: 12px;
   }
 
   .section {

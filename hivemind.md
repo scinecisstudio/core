@@ -1,10 +1,34 @@
 # Hivemind
 
+## Session Summary (2026-03-12)
+- User instruction: always update relevant `*.md` file(s) at the end of each completed task in this workspace.
+- Current verified Android app project path for privacy/compliance audits: `C:\Users\Pritesh CTO\Documents\CoreApp`.
+- Audited app manifest, merged release manifest, telemetry consent flow, backup rules, notification listener, accessibility service, weather repository, and settings/backup code from `C:\Users\Pritesh CTO\Documents\CoreApp`.
+- Updated website privacy policy at `C:\Users\Pritesh CTO\Documents\core\privacy-policy.html`.
+- Privacy policy changes aligned with current app behavior:
+- Telemetry/Firebase collection is opt-in and disabled by default until user consent is enabled in app settings.
+- Sensitive telemetry fields are filtered before analytics/crash logging.
+- Manual backup export/import is distinct from Android cloud/device-transfer backup and may include launcher settings/local data chosen by the user.
+- Android cloud/device-transfer backup exclusions for launcher prefs and launcher databases are disclosed.
+- Previous AD_ID / AdServices disclosure note is stale for current build inputs; current source manifest removes those permissions and current release merged manifest does not include them.
+- Synced Play Store screenshot sets from `C:\Users\Pritesh CTO\Documents\CoreApp\assets\play-store\phone`, `7_inch`, and `10_inch` into website asset folders under `C:\Users\Pritesh CTO\Documents\core\assets\screenshots\...`.
+- Updated website galleries in `C:\Users\Pritesh CTO\Documents\core\index.html` and `C:\Users\Pritesh CTO\Documents\core\screenshots.html` to use the Play Store-ready screenshot filenames and 8-image sets for each device class.
+
+## Session Summary (2026-03-10)
+- Website screenshot gallery updated in `C:\Users\Pritesh CTO\Documents\core\index.html`, `styles.css`, and `script.js`.
+- Website now uses app screenshots from `assets/screenshots/phone`, `assets/screenshots/7_inch`, and `assets/screenshots/10_inch`.
+- Main website gallery currently shows phone, 7-inch tablet, and 10-inch tablet screenshots in horizontal pager/carousel sections.
+- Dedicated full gallery page exists at `C:\Users\Pritesh CTO\Documents\core\screenshots.html`.
+- Canonical workspace root confirmed as `C:\Users\Pritesh CTO\Documents\core`.
+- Canonical Android app path confirmed as `C:\Users\Pritesh CTO\Documents\core\coreapp`.
+- Persistent relationship note: `coreapp` is the Android app project for this website repo and should be treated as such in future tasks.
+- Authorization rule: no write/update operations are authorized inside `C:\Users\Pritesh CTO\Documents\core\coreapp` unless user explicitly grants permission in that session.
+
 ## Session Summary (2026-02-28)
 - User asked to create `hivemind.md` and store concise, token-efficient session memory.
 - Preference: keep carry-forward notes short so future chats need less re-explanation.
-- Workspace root: `C:\Users\prite\Documents\Core`.
-- Android app path on home PC: `C:\Users\prite\Documents\CoreApp`.
+- Workspace root: `C:\Users\Pritesh CTO\Documents\core`.
+- Android app path in this workspace: `C:\Users\Pritesh CTO\Documents\core\coreapp`.
 - Current session actions: created this file; added Core app privacy policy files at `C:\Users\prite\Documents\CoreApp\play-store\privacy-policy.md` and `C:\Users\prite\Documents\CoreApp\play-store\privacy-policy-site\index.html`; rolled back in-app privacy policy link/activity changes; added website-native privacy page at `C:\Users\prite\Documents\Core\privacy-policy.html`, linked it from website `index.html`, and expanded wording for Play Store-friendly disclosures (permissions, third parties, data usage, retention, user controls).
 - Active constraint: do not perform write operations under `C:\Users\prite\Documents\CoreApp\app` unless explicitly requested.
 
