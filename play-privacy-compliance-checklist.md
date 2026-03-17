@@ -1,15 +1,16 @@
 # Google Play Privacy Compliance Checklist
 
-Last updated: March 1, 2026
+Last updated: March 17, 2026
 Applies to: Core Launcher (`com.scinecis.launcher`)
-Repository relationship: Website project root is `C:\Users\Pritesh CTO\Documents\core` and its Android app project is `C:\Users\Pritesh CTO\Documents\core\coreapp`.
-Execution constraint: Do not perform any write/update operation inside `C:\Users\Pritesh CTO\Documents\core\coreapp` unless explicitly authorized by the user in that session.
+Repository relationship: Website project root is `C:\Users\Pritesh CTO\Documents\core` and its live Android app project is `C:\Users\Pritesh CTO\Documents\CoreApp`.
+Execution constraint: Do not perform any write/update operation inside `C:\Users\Pritesh CTO\Documents\CoreApp` unless explicitly authorized by the user in that session.
 Website gallery note: public website screenshot presentation is maintained in `index.html`, `styles.css`, `script.js`, and `screenshots.html` under this repo.
 
 Use this checklist before every Play Store submission.
 
 ## 1. Privacy Policy URL Readiness
 - [ ] Privacy policy URL is publicly accessible, active, non-geofenced, and non-editable.
+- [ ] In-app privacy policy link and Play Console privacy policy URL both resolve directly to the privacy policy page, not just the website home page.
 - [ ] Policy identifies the developer entity (Scinecis) and app package name.
 - [ ] Policy explains what data is collected/accessed, how it is used, how it is shared, and how users can request support.
 - [ ] Policy page includes a working privacy contact email.
@@ -17,9 +18,10 @@ Use this checklist before every Play Store submission.
 ## 2. Data Safety Form Consistency
 - [ ] Play Console Data Safety answers exactly match current app behavior.
 - [ ] All data categories used by app features and SDKs are declared.
+- [ ] Optional telemetry consent gating is reflected accurately in privacy documentation and reviewer notes.
 - [ ] Encryption-in-transit answers match actual network implementation.
 - [ ] Data deletion/retention answers match implemented behavior.
-- [ ] Merged manifest for release build reviewed for SDK-added permissions/components before submission.
+- [ ] Fresh merged manifest for the exact release build reviewed for SDK-added permissions/components before submission.
 
 ## 3. SDK and Library Transparency
 - [ ] All active SDKs are listed in privacy documentation and reflected in Data Safety.
@@ -33,11 +35,14 @@ Use this checklist before every Play Store submission.
 - [ ] Notification Listener usage is clearly explained to users.
 - [ ] Package visibility (`QUERY_ALL_PACKAGES`) usage is limited to launcher core functionality and correctly declared.
 - [ ] Overlay permission usage is optional and clearly described.
+- [ ] Biometric usage is documented consistently with app-lock behavior.
+- [ ] `READ_MEDIA_IMAGES` / legacy `READ_EXTERNAL_STORAGE` purpose is disclosed consistently for wallpaper/media-related local processing.
 
 ## 5. Store Listing and In-App Consistency
 - [ ] Store listing text does not conflict with privacy policy or in-app behavior.
 - [ ] Prominent disclosures are shown before sensitive data access where required.
 - [ ] Permission rationale shown to users matches actual feature behavior.
+- [ ] Website homepage metadata (version/features/permissions) matches the current app build and does not drift from Play listing claims.
 - [ ] Website/app download CTA points to the current official channel (Play Store URL) and does not advertise unsupported direct APK distribution.
 
 ## 6. Account and Deletion Requirements
