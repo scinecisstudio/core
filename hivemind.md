@@ -1,5 +1,29 @@
 # Hivemind
 
+## Session Summary (2026-03-17 - Website Policy Sync)
+- Updated website privacy/compliance content in `C:\Users\Pritesh CTO\Documents\core` to match the current app state audited from `C:\Users\Pritesh CTO\Documents\CoreApp`.
+- Updated `privacy-policy.html` to reflect March 17, 2026 status, including local media/wallpaper access for appearance tuning, biometric usage, direct privacy-policy URL expectations, and clearer sharing language for local-only wallpaper/media processing.
+- Updated `index.html` so the public website reflects current app version `1.1.1` (`versionCode 5`), exposes privacy policy access more prominently, and documents package visibility, biometric, and media/wallpaper permission usage.
+- Refreshed `play-data-safety-answer-sheet.md` to the live Android app path (`C:\Users\Pritesh CTO\Documents\CoreApp`), added current storage/media permissions, removed stale AD_ID/AdServices assumptions, documented telemetry consent gating, and noted that release merged-manifest artifacts must be freshly regenerated before submission review.
+- Refreshed `play-privacy-compliance-checklist.md` to the live Android app path, added checks for direct privacy-policy URL resolution, telemetry consent alignment, biometric/media permission disclosure, and fresh release merged-manifest review.
+- No write operations were performed inside `C:\Users\Pritesh CTO\Documents\CoreApp` during this task.
+
+## Session Summary (2026-03-17 - Android Play Policy Audit)
+- Audited the live Android app project at `C:\Users\Pritesh CTO\Documents\CoreApp` for Play-policy-relevant drift. Read-only audit only; no writes were made inside the app project.
+- Confirmed repo docs still contain stale Android path references to `C:\Users\Pritesh CTO\Documents\core\coreapp`, while the existing project path on disk is `C:\Users\Pritesh CTO\Documents\CoreApp`.
+- Current source manifest now declares `READ_EXTERNAL_STORAGE` (maxSdk 32) and `READ_MEDIA_IMAGES` in addition to the previously documented launcher/privacy-sensitive permissions.
+- Current source manifest explicitly removes `AD_ID` and AdServices permissions; stale website/docs that still describe those identifiers as present need refresh before the next Play submission.
+- App telemetry remains opt-in by default: Firebase Analytics, Crashlytics, and Performance collection are disabled in manifest metadata until consent is granted, and consent toggling is implemented in app settings.
+- App telemetry logger filters sensitive values such as package names, contact IDs, app labels, locations, event IDs, widget IDs, and provider identifiers before analytics/crash logging.
+- Current app privacy-policy link string points to `https://scinecisstudio.github.io/core/index.html` rather than the dedicated privacy policy page, which is a Play-review risk if reviewers expect a direct privacy policy destination.
+- Existing release merged manifest under `app/build/intermediates/merged_manifest/release/...` is stale relative to source (`versionCode/versionName` mismatch versus `app/build.gradle.kts`), so submission checks should use a freshly generated release merged manifest rather than the checked-in/stale build artifact.
+
+## Session Summary (2026-03-17)
+- Reviewed all Markdown files in `C:\Users\Pritesh CTO\Documents\core`: `play-privacy-compliance-checklist.md`, `play-data-safety-answer-sheet.md`, and `hivemind.md`.
+- Current workspace-level write constraint reaffirmed from repo docs: do not perform any write/update operation inside `C:\Users\Pritesh CTO\Documents\core\coreapp` unless the user explicitly authorizes it in that session.
+- Privacy/compliance docs currently describe `coreapp` as the Android app project for this website repo and treat website screenshot/gallery files under this repo as public-facing compliance-sensitive assets.
+- `hivemind.md` instruction reaffirmed: update relevant Markdown memory at the end of each completed task in this workspace.
+
 ## Session Summary (2026-03-12)
 - User instruction: always update relevant `*.md` file(s) at the end of each completed task in this workspace.
 - Current verified Android app project path for privacy/compliance audits: `C:\Users\Pritesh CTO\Documents\CoreApp`.
