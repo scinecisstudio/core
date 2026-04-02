@@ -1,5 +1,29 @@
 # Hivemind
 
+## Session Summary (2026-04-02 - Website Logo Sync)
+- User requested syncing the website logo to the updated Android app logo found under `C:\Users\Pritesh CTO\Documents\CoreApp\app\src\main`.
+- Located the current source logo at `C:\Users\Pritesh CTO\Documents\CoreApp\app\src\main\ic_launcher-playstore.png`.
+- Replaced website asset files `C:\Users\Pritesh CTO\Documents\core\assets\core-logo.png` and `C:\Users\Pritesh CTO\Documents\core\assets\core-brand-preview.png` with the current Android source logo so existing website references automatically use the new branding.
+- Verification confirmed both website asset files now match the Android source logo hash exactly.
+
+## Session Summary (2026-04-02 - Privacy Link and Website Metadata Fix)
+- User explicitly authorized write access inside `C:\Users\Pritesh CTO\Documents\CoreApp` for this task.
+- Updated in-app privacy policy URL in `C:\Users\Pritesh CTO\Documents\CoreApp\app\src\main\res\values\strings.xml` from the website home page to the dedicated privacy policy URL: `https://scinecisstudio.github.io/core/privacy-policy.html`.
+- Updated website homepage metadata in `C:\Users\Pritesh CTO\Documents\core\index.html` to match the current Android app project state: `versionName 1.1.7`, `versionCode 12`, `targetSdk 36`.
+- Verification after edits confirmed the app privacy link string and website metadata now match the intended compliance state.
+
+## Session Summary (2026-04-02 - CoreApp Privacy Compliance Recheck)
+- Audited `C:\Users\Pritesh CTO\Documents\CoreApp` in read-only mode to compare current app behavior with website privacy disclosures for Google Play compliance.
+- Confirmed current app source/release build state now uses `versionName 1.1.7`, `versionCode 12`, and `targetSdk 36`; existing website homepage metadata in `C:\Users\Pritesh CTO\Documents\core\index.html` is stale at `1.1.1`, `versionCode 5`, and `API 35`.
+- Confirmed current source manifest still declares `READ_MEDIA_IMAGES`, legacy `READ_EXTERNAL_STORAGE` (`maxSdkVersion=32`), `READ_CONTACTS`, `READ_CALENDAR`, `CALL_PHONE`, `USE_BIOMETRIC`, `SYSTEM_ALERT_WINDOW`, and `QUERY_ALL_PACKAGES`, plus Accessibility Service and Notification Listener service bindings.
+- Confirmed release merged manifest currently includes additional SDK/runtime permissions/components such as `USE_FINGERPRINT`, `ACCESS_NETWORK_STATE`, `WAKE_LOCK`, install referrer binding, Firebase component discovery, Firebase Installations, Firebase Sessions, and Google measurement components.
+- Confirmed Firebase Analytics, Crashlytics, Performance, and Remote Config are present in the app and telemetry collection defaults remain disabled until user consent is enabled.
+- Confirmed telemetry logger filters sensitive keys such as package names, contact IDs, locations, event IDs, widget IDs, and provider identifiers before analytics/crash logging.
+- Confirmed weather feature still sends user-provided location text and API key to OpenWeather endpoints when the feature is configured by the user.
+- Confirmed backup rules still exclude `launcher_prefs.xml` and launcher databases from Android cloud backup/device transfer while manual export/import remains user-controlled.
+- Current Play/privacy risk still present: app string `privacy_policy_url` in `app/src/main/res/values/strings.xml` points to `https://scinecisstudio.github.io/core/index.html` instead of the dedicated `privacy-policy.html` page.
+- Website privacy policy at `C:\Users\Pritesh CTO\Documents\core\privacy-policy.html` remains broadly aligned with current code-based behavior; the more immediate required fixes are the in-app privacy-policy URL and stale website version/target SDK metadata.
+
 ## Session Summary (2026-03-17 - Website Policy Sync)
 - Updated website privacy/compliance content in `C:\Users\Pritesh CTO\Documents\core` to match the current app state audited from `C:\Users\Pritesh CTO\Documents\CoreApp`.
 - Updated `privacy-policy.html` to reflect March 17, 2026 status, including local media/wallpaper access for appearance tuning, biometric usage, direct privacy-policy URL expectations, and clearer sharing language for local-only wallpaper/media processing.
