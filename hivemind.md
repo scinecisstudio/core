@@ -1,5 +1,13 @@
 # Hivemind
 
+## Session Summary (2026-04-02 - Contact Page and Theme Update)
+- Added a new contact page at `contact.html` featuring GitHub, X (Twitter), LinkedIn, and email (`priteshvishwakarma@gmail.com`).
+- Updated the website's visual theme to match the updated app logo (purple theme).
+- Changed primary color to `#6200EE` and accent color to `#BB86FC`, aligned with the app's `accent_vibrant` resources.
+- Updated all hardcoded colors, gradients, and backgrounds across `styles.css` to follow the new purple/lavender palette.
+- Synchronized navigation links across `index.html`, `privacy-policy.html`, `contact.html`, and `screenshots.html`.
+- Updated contact email in `privacy-policy.html` to `priteshvishwakarma@gmail.com` for consistency.
+
 ## Session Summary (2026-04-02 - Website Logo Sync)
 - User requested syncing the website logo to the updated Android app logo found under `C:\Users\Pritesh CTO\Documents\CoreApp\app\src\main`.
 - Located the current source logo at `C:\Users\Pritesh CTO\Documents\CoreApp\app\src\main\ic_launcher-playstore.png`.
