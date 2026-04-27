@@ -25,7 +25,7 @@ Audit note: existing generated merged-manifest artifacts under `app/build/interm
   - Firebase Installations
   - Firebase Sessions
   - Google Play services measurement components
-- OpenWeather API endpoints used directly in `WeatherRepository`.
+- Open-Meteo API endpoints used directly in `WeatherRepository`.
 
 ## 2) Permissions (Current Release Build Inputs)
 Declared in source manifest:
@@ -56,7 +56,7 @@ Removed in current source manifest:
 - Firebase Crashlytics logs/custom keys when telemetry consent is enabled.
 - Firebase Performance traces/metrics/attributes when telemetry consent is enabled.
 - Firebase Remote Config fetches when telemetry consent is enabled.
-- OpenWeather network calls with user-provided weather location and API key when weather is configured by the user.
+- Open-Meteo network calls with user-provided weather city/location text when weather is configured by the user. No weather API key is collected.
 - Wallpaper/media access used for appearance tuning remains local to the device based on current app code.
 
 Notable telemetry payload keys observed in app code:
@@ -68,7 +68,7 @@ Use these if shipping current code unchanged.
 
 ### Location
 - Approximate location: **Collected = Yes**
-- Shared = **Yes** (sent to OpenWeather when the user enables weather and enters a location)
+- Shared = **Yes** (sent to Open-Meteo when the user enables weather and enters a city/location)
 - Purpose(s): App functionality
 - Processing: Not required for core launcher; optional weather feature
 
@@ -101,7 +101,7 @@ Use these if shipping current code unchanged.
 
 ## 6) Suggested Data Safety Narrative Snippets
 - "Core Launcher uses Firebase Analytics, Crashlytics, Performance Monitoring, and Remote Config only after the user enables optional telemetry consent in app settings."
-- "Core Launcher uses OpenWeather APIs for optional weather features configured by the user."
+- "Core Launcher uses Open-Meteo APIs for optional weather features configured by the user. Weather uses manually entered city/location text and does not request GPS/location permission."
 - "Core Launcher can access contacts, calendar, notification listener, accessibility, overlay, biometric, and local media/wallpaper-related features only when enabled and required for selected functionality."
 
 ## 7) Final Submission Gate
