@@ -36,7 +36,7 @@
       <div class="section-head">
         <p class="eyebrow">LEGAL</p>
         <h2>Privacy Policy</h2>
-        <p><strong>Last updated:</strong> April 22, 2026</p>
+        <p><strong>Last updated:</strong> April 29, 2026</p>
         <p>This policy applies to Core Launcher for Android (<code>com.scinecis.launcher</code>) published by <strong>Scinecis</strong>.</p>
       </div>
 
@@ -53,6 +53,7 @@
           <ul>
             <li>Installed app inventory/package names for launcher discovery, search, categorization, and app actions.</li>
             <li>Contacts data, including contact display names, phone numbers, starred/favorite state, and contact photos, for contact search and favorite contacts in Quick Tiles (when granted).</li>
+            <li>Phone numbers from selected contacts are passed to messaging apps (WhatsApp, WhatsApp Business, the device's default SMS app, or the dialer) when you tap a call/message/WhatsApp action on a contact tile. The phone number is included in the deep link used to open the chosen app and is not stored or transmitted by Core Launcher to its own servers.</li>
             <li>Calendar event metadata for today/upcoming events in Quick Tiles (when granted).</li>
             <li>Notification listener metadata used for icon badge counts (when enabled by user).</li>
             <li>Accessibility service event metadata for configured gesture/app-lock flows (when enabled by user).</li>
@@ -130,6 +131,7 @@
           <p>We do not sell personal and sensitive user data.</p>
           <p>Data is shared only with service providers necessary to deliver app functionality (for example analytics/crash/performance configuration and weather response services), and only for disclosed purposes.</p>
           <p>Installed app inventory, contact identifiers, widget/provider identifiers, weather location strings, calendar event identifiers, and similar sensitive values are filtered out of the app's telemetry payloads before analytics/crash logging. Weather location text is still sent to OpenWeather when you use the weather feature because that service requires the location input to return weather results.</p>
+          <p>When you tap the WhatsApp or WhatsApp Business action on a contact in Quick Tiles, the selected contact's phone number is passed to WhatsApp via a deep link (<code>https://api.whatsapp.com/send?phone=&hellip;</code>) so WhatsApp can open a chat with that contact. This share happens only at the moment you tap the action, only with the contact you selected, and only with WhatsApp. Core Launcher does not store or transmit phone numbers to its own servers, and phone numbers are not included in analytics, crash, or performance telemetry. The Call and Message actions use on-device intents (<code>tel:</code> and <code>smsto:</code>) and do not transmit data to Core Launcher's servers.</p>
           <p>Wallpaper or media access used for local appearance adjustment stays on device and is not shared with analytics or advertising providers for that feature purpose.</p>
           <p>Contact photos, contact starred/favorite state, and wallpaper-derived color analysis are used for local launcher functionality and are not sold or shared for advertising.</p>
           <p>Installed app inventory and other sensitive data are not shared for advertising or analytics monetization purposes.</p>
