@@ -1,9 +1,9 @@
 # Google Play Privacy Compliance Checklist
 
-Last updated: March 17, 2026
+Last updated: May 1, 2026
 Applies to: Core Launcher (`com.scinecis.launcher`)
-Repository relationship: Website project root is `C:\Users\Pritesh CTO\Documents\core` and its live Android app project is `C:\Users\Pritesh CTO\Documents\CoreApp`.
-Execution constraint: Do not perform any write/update operation inside `C:\Users\Pritesh CTO\Documents\CoreApp` unless explicitly authorized by the user in that session.
+Repository relationship: Website project root is `C:\Users\prite\Documents\Core` and its live Android app project is `C:\Users\prite\Documents\CoreApp`.
+Execution constraint: Do not perform any write/update operation inside `C:\Users\prite\Documents\CoreApp` unless explicitly authorized by the user in that session.
 Website gallery note: public website screenshot presentation is maintained in `index.html`, `styles.css`, `script.js`, and `screenshots.html` under this repo.
 
 Use this checklist before every Play Store submission.
@@ -32,11 +32,15 @@ Use this checklist before every Play Store submission.
 ## 4. Sensitive Permission and Access Declarations
 - [ ] Contacts/Calendar/Call actions are requested only for feature-critical use.
 - [ ] Accessibility Service usage is accurately declared with required in-app disclosure/consent.
+- [ ] `accessibility_service_config.xml` retains `android:description`, `android:summary`, and `android:canRetrieveWindowContent="false"` (removing any of these triggers a Play "missing prominent disclosure" rejection).
+- [ ] Prominent disclosure video for Accessibility API is freshly recorded for the current release, uploaded as an unlisted YouTube link, and pasted into Play Console Accessibility API form.
+- [ ] In-app disclosure dialog content for Accessibility (and every other runtime/special permission) lists what the permission does, how it is used, a privacy assurance, and the exact revocation path (e.g. `Settings → Apps → Core → Permissions`).
+- [ ] In-app disclosure dialog text matches across all 6 supported locales (`values`, `values-es`, `values-hi`, `values-id`, `values-ru`, `values-pt-rBR`).
 - [ ] Notification Listener usage is clearly explained to users.
 - [ ] Package visibility (`QUERY_ALL_PACKAGES`) usage is limited to launcher core functionality and correctly declared.
 - [ ] Overlay permission usage is optional and clearly described.
 - [ ] Biometric usage is documented consistently with app-lock behavior.
-- [ ] `READ_MEDIA_IMAGES` / legacy `READ_EXTERNAL_STORAGE` purpose is disclosed consistently for wallpaper/media-related local processing.
+- [ ] `READ_MEDIA_IMAGES` / legacy `READ_EXTERNAL_STORAGE` purpose is disclosed consistently for wallpaper/media-related local processing, including an explicit "no images or files uploaded, collected, or shared" assurance.
 
 ## 5. Store Listing and In-App Consistency
 - [ ] Store listing text does not conflict with privacy policy or in-app behavior.

@@ -1,11 +1,11 @@
 # Core Launcher Play Data Safety Answer Sheet (Code-Based)
 
-Last reviewed: March 17, 2026
-Codebase audited: `C:\Users\Pritesh CTO\Documents\CoreApp`
+Last reviewed: May 1, 2026
+Codebase audited: `C:\Users\prite\Documents\CoreApp`
 Package: `com.scinecis.launcher`
 Website distribution note: Play Store-only CTA on website (Direct APK option removed on March 1, 2026).
-Repository relationship note: `C:\Users\Pritesh CTO\Documents\CoreApp` is the live Android app project currently paired with this website repository (`C:\Users\Pritesh CTO\Documents\core`).
-Execution constraint: Do not perform any write/update operation inside `C:\Users\Pritesh CTO\Documents\CoreApp` unless explicitly authorized by the user in that session.
+Repository relationship note: `C:\Users\prite\Documents\CoreApp` is the live Android app project currently paired with this website repository (`C:\Users\prite\Documents\Core`).
+Execution constraint: Do not perform any write/update operation inside `C:\Users\prite\Documents\CoreApp` unless explicitly authorized by the user in that session.
 Website gallery note: website screenshot assets and display logic are maintained separately in this repo and should stay consistent with the current app behavior shown publicly.
 Audit note: existing generated merged-manifest artifacts under `app/build/intermediates/...` may be stale between builds; use a freshly generated release merged manifest before submission decisions.
 
@@ -98,6 +98,12 @@ Use these if shipping current code unchanged.
 4. `QUERY_ALL_PACKAGES` requires strict policy justification as a launcher core requirement.
 5. Existing generated release merged-manifest artifacts appear stale versus current Gradle version metadata.
    - Rebuild and review a fresh release merged manifest before final Data Safety / permissions sign-off.
+6. **Accessibility Service** (post April 2026 rejection hardening):
+   - Play Console "App content → Accessibility services" declaration: Usage = `App functionality`; Sensitive data = `No`; `isAccessibilityTool` = `No`.
+   - `accessibility_service_config.xml` MUST keep `android:description=@string/accessibility_service_desc`, `android:summary=@string/accessibility_service_summary`, and `android:canRetrieveWindowContent="false"`. Removing any of these will trigger a "missing prominent disclosure" rejection.
+   - In-app disclosure dialogs are required for App Lock, Swipe Down for Notifications, and Double Tap to Sleep before sending the user to Accessibility settings (verified in all 6 locales: values, es, hi, id, ru, pt-rBR).
+   - Prominent disclosure video must be re-uploaded to Play Console (unlisted YouTube link, not Shorts-only when avoidable) on every release that changes Accessibility-related UI.
+   - Privacy policy `Accessibility Service` section must enumerate the 3 features and confirm `canRetrieveWindowContent=false` + local-only operation.
 
 ## 6) Suggested Data Safety Narrative Snippets
 - "Core Launcher uses Firebase Analytics, Crashlytics, Performance Monitoring, and Remote Config only after the user enables optional telemetry consent in app settings."
