@@ -25,7 +25,7 @@ Use this checklist before every Play Store submission.
 
 ## 3. SDK and Library Transparency
 - [ ] All active SDKs are listed in privacy documentation and reflected in Data Safety.
-- [ ] Current known third-party services: Firebase Analytics, Crashlytics, Performance Monitoring, Remote Config, Open-Meteo.
+- [ ] Current known third-party services: Firebase Analytics, Crashlytics, Performance Monitoring, Remote Config, OpenWeather.
 - [ ] No undeclared SDKs (including transitive dependencies) process user data.
 - [ ] If `AD_ID` or AdServices permissions appear through transitive dependencies, Data Safety and policy text explicitly cover identifier/measurement behavior.
 

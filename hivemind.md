@@ -107,4 +107,3 @@
 - Updated website download section to Play Store-only distribution.
 - Removed Direct APK option from `C:\Users\prite\Documents\Core\index.html`.
 - Added Play Store URL CTA: `https://play.google.com/store/apps/details?id=com.scinecis.launcher`.
-- **[2026-04-27] [Codex]:** Updated website privacy/compliance docs for the app weather provider change from OpenWeather to Open-Meteo. `privacy-policy.html` now says weather uses manually entered city/location text, no weather API key, no GPS/location permission for weather, and shares weather lookup text with Open-Meteo. Also updated homepage permission wording, Play Data Safety answer sheet, and compliance checklist. Policy date set to April 27, 2026.

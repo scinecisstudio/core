@@ -53,6 +53,7 @@
           <ul>
             <li>Installed app inventory/package names for launcher discovery, search, categorization, and app actions.</li>
             <li>Contacts data, including contact display names, phone numbers, starred/favorite state, and contact photos, for contact search and favorite contacts in Quick Tiles (when granted).</li>
+            <li>Phone numbers from selected contacts are passed to messaging apps (WhatsApp, WhatsApp Business, the device's default SMS app, or the dialer) when you tap a call/message/WhatsApp action on a contact tile. The phone number is included in the deep link used to open the chosen app and is not stored or transmitted by Core Launcher to its own servers.</li>
             <li>Calendar event metadata for today/upcoming events in Quick Tiles (when granted).</li>
             <li>Notification listener metadata (per-package unread counts only) used for app icon badge counts when explicitly enabled by user. Notification message content, sender, or body text is never read, stored, transmitted, or shared.</li>
             <li>Accessibility service event metadata for App Lock, Swipe Down for Notifications, and Double Tap to Sleep features (when explicitly enabled by user). Only the foreground package name is observed in memory to detect locked-app launches; window content is not retrieved, recorded, transmitted, or shared.</li>
@@ -91,7 +92,7 @@
             <li><strong>Firebase Performance Monitoring:</strong> app performance and latency telemetry when telemetry consent is enabled.</li>
             <li><strong>Firebase Remote Config:</strong> remotely delivered configuration values when telemetry consent is enabled.</li>
             <li><strong>Firebase Installations / Sessions (transitive Firebase components):</strong> app instance/session support for Firebase services.</li>
-            <li><strong>Open-Meteo APIs:</strong> geocoding and weather response data based on the city/location text entered by the user.</li>
+            <li><strong>OpenWeather APIs:</strong> weather response data based on user weather setup.</li>
           </ul>
           <p>Core enables Firebase collection only after you grant telemetry consent in app settings. The app starts with Firebase Analytics, Crashlytics, and Performance collection disabled by default.</p>
           <p>Current source manifest rules remove Google advertising identifier and AdServices attribution permissions from the app package. Release declarations should still be rechecked before every submission because merged manifests can change when dependencies change.</p>
@@ -99,8 +100,8 @@
           <p>
             Firebase:
             <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">Privacy</a><br />
-            Open-Meteo:
-            <a href="https://open-meteo.com/en/terms" target="_blank" rel="noopener noreferrer">Terms and Privacy</a>
+            OpenWeather:
+            <a href="https://openweathermap.org/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
           </p>
           <p>Core also uses Firebase Installations/session support that can create service-side app instance identifiers needed for Firebase operations when telemetry features are enabled.</p>
           <p>We require third-party providers used by Core to handle data in line with Google Play policy requirements. We do not permit sale of personal and sensitive user data from Core through SDK integrations.</p>
@@ -136,7 +137,8 @@
           <h3>7. Data Sharing and Sale</h3>
           <p>We do not sell personal and sensitive user data.</p>
           <p>Data is shared only with service providers necessary to deliver app functionality (for example analytics/crash/performance configuration and weather response services), and only for disclosed purposes.</p>
-          <p>Installed app inventory, contact identifiers, widget/provider identifiers, weather location strings, calendar event identifiers, and similar sensitive values are filtered out of the app's telemetry payloads before analytics/crash logging. Weather city/location text is sent to Open-Meteo when you use the weather feature because that service requires location input to return weather results. Core does not request GPS/location permission for weather; it uses only the city/location text you enter.</p>
+          <p>Installed app inventory, contact identifiers, widget/provider identifiers, weather location strings, calendar event identifiers, and similar sensitive values are filtered out of the app's telemetry payloads before analytics/crash logging. Weather location text is still sent to OpenWeather when you use the weather feature because that service requires the location input to return weather results.</p>
+          <p>When you tap the WhatsApp or WhatsApp Business action on a contact in Quick Tiles, the selected contact's phone number is passed to WhatsApp via a deep link (<code>https://api.whatsapp.com/send?phone=&hellip;</code>) so WhatsApp can open a chat with that contact. This share happens only at the moment you tap the action, only with the contact you selected, and only with WhatsApp. Core Launcher does not store or transmit phone numbers to its own servers, and phone numbers are not included in analytics, crash, or performance telemetry. The Call and Message actions use on-device intents (<code>tel:</code> and <code>smsto:</code>) and do not transmit data to Core Launcher's servers.</p>
           <p>Wallpaper or media access used for local appearance adjustment stays on device and is not shared with analytics or advertising providers for that feature purpose.</p>
           <p>Contact photos, contact starred/favorite state, and wallpaper-derived color analysis are used for local launcher functionality and are not sold or shared for advertising.</p>
           <p>Installed app inventory and other sensitive data are not shared for advertising or analytics monetization purposes.</p>
