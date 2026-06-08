@@ -1,6 +1,6 @@
 # Core Launcher Play Data Safety Answer Sheet (Code-Based)
 
-Last reviewed: May 1, 2026
+Last reviewed: June 5, 2026
 Codebase audited: `C:\Users\prite\Documents\CoreApp`
 Package: `com.scinecis.launcher`
 Website distribution note: Play Store-only CTA on website (Direct APK option removed on March 1, 2026).
@@ -11,9 +11,9 @@ Audit note: existing generated merged-manifest artifacts under `app/build/interm
 
 ## Evidence Sources
 - App manifest: `app/src/main/AndroidManifest.xml`
-- Merged manifest (debug): `app/build/intermediates/merged_manifest/debug/processDebugMainManifest/AndroidManifest.xml`
+- Merged manifest (release): `app/build/intermediates/merged_manifests/release/processReleaseManifest/AndroidManifest.xml`
 - Dependencies: `app/build.gradle.kts`, `gradle/libs.versions.toml`
-- Telemetry code: `util/FirebaseEventLogger.kt`, `util/FirebasePerformanceTracker.kt`, `util/RemoteConfigManager.kt`
+- Telemetry code: `util/FirebaseEventLogger.kt`, `util/FirebasePerformanceTracker.kt`, `util/PrivacyTelemetryManager.kt`, `util/RemoteConfigManager.kt`
 - Feature/data access code: contacts/calendar/weather/backup files under `app/src/main/java/com/scinecis/launcher/...`
 
 ## 1) SDK / Service Inventory (Actual)
@@ -25,12 +25,10 @@ Audit note: existing generated merged-manifest artifacts under `app/build/interm
   - Firebase Installations
   - Firebase Sessions
   - Google Play services measurement components
-- OpenWeather API endpoints used directly in `WeatherRepository`.
+- Open-Meteo API endpoints used directly in `WeatherRepository`.
 
 ## 2) Permissions (Current Release Build Inputs)
 Declared in source manifest:
-- `READ_EXTERNAL_STORAGE` (`maxSdkVersion="32"`)
-- `READ_MEDIA_IMAGES`
 - `READ_CALENDAR`
 - `INTERNET`
 - `CALL_PHONE`
@@ -38,7 +36,8 @@ Declared in source manifest:
 - `USE_BIOMETRIC`
 - `SYSTEM_ALERT_WINDOW`
 - `QUERY_ALL_PACKAGES`
-- Service bindings: Accessibility + Notification Listener
+- `REQUEST_DELETE_PACKAGES`
+- Service bindings: Notification Listener
 
 Added by dependencies in merged manifest:
 - `USE_FINGERPRINT`
@@ -50,14 +49,15 @@ Removed in current source manifest:
 - `com.google.android.gms.permission.AD_ID`
 - `ACCESS_ADSERVICES_ATTRIBUTION`
 - `ACCESS_ADSERVICES_AD_ID`
+- Accessibility Service declaration
 
 ## 3) Data Flows That Leave Device (Observed)
-- Firebase Analytics events for user actions and screen views when telemetry consent is enabled.
-- Firebase Crashlytics logs/custom keys when telemetry consent is enabled.
-- Firebase Performance traces/metrics/attributes when telemetry consent is enabled.
-- Firebase Remote Config fetches when telemetry consent is enabled.
-- OpenWeather network calls with user-provided weather location and API key when weather is configured by the user.
-- Wallpaper/media access used for appearance tuning remains local to the device based on current app code.
+- Firebase Analytics events for user actions and screen views when telemetry is enabled.
+- Firebase Crashlytics logs/custom keys in release builds.
+- Firebase Performance traces/metrics/attributes when telemetry is enabled.
+- Firebase Remote Config fetches when telemetry is enabled.
+- Open-Meteo network calls with user-provided weather city/location text and geocode coordinates when weather is configured by the user.
+- Wallpaper color metadata used for appearance tuning remains local to the device based on current app code.
 
 Notable telemetry payload keys observed in app code:
 - Action names, screen names, `category_name`, `query_length`, coarse booleans/numerics, and feature toggles.
@@ -68,20 +68,20 @@ Use these if shipping current code unchanged.
 
 ### Location
 - Approximate location: **Collected = Yes**
-- Shared = **Yes** (sent to OpenWeather when the user enables weather and enters a location)
+- Shared = **Yes** (sent to Open-Meteo when the user enables weather and enters a location)
 - Purpose(s): App functionality
 - Processing: Not required for core launcher; optional weather feature
 
 ### App Activity
-- App interactions: **Collected = Yes** when telemetry consent is enabled
-- Shared = **Yes** (Firebase Analytics / Crashlytics telemetry)
-- Purpose(s): Analytics, Developer communications (diagnostics), App functionality quality
+- App interactions: **Collected = Yes** when telemetry is enabled
+- Shared = **Yes** (Firebase Analytics / telemetry service operation)
+- Purpose(s): Analytics, app functionality quality
 
 ### App Info and Performance
-- Crash logs: **Collected = Yes** when telemetry consent is enabled
-- Diagnostics/performance data: **Collected = Yes** when telemetry consent is enabled
+- Crash logs: **Collected = Yes** in release builds
+- Diagnostics/performance data: **Collected = Yes** when telemetry is enabled
 - Shared = **Yes** (Firebase Crashlytics/Performance)
-- Purpose(s): Analytics, Fraud prevention/security (if claimed), App stability
+- Purpose(s): Analytics, diagnostics, app stability
 
 ### Device or Other IDs
 - Device or other IDs: **Collected = Yes** (conservative; inferred from Firebase Installations / app-instance support when telemetry-backed Firebase services are enabled)
@@ -89,26 +89,20 @@ Use these if shipping current code unchanged.
 - Purpose(s): Analytics, diagnostics, service operation
 
 ## 5) High-Risk Review Notes (Action Items)
-1. The in-app privacy policy URL currently points to the website home page rather than the dedicated privacy policy page.
-   - Update the app resource to point directly to `privacy-policy.html` before the next Play submission.
-2. Source manifest permissions now include `READ_MEDIA_IMAGES` and `READ_EXTERNAL_STORAGE` (older Android versions).
-   - Website policy, store text, and reviewer notes should explain the local wallpaper/media access purpose.
-3. `allowBackup="true"` is still enabled, but current backup/data-extraction rules exclude the main launcher prefs file and launcher databases.
+1. The in-app privacy policy URL points directly to `privacy-policy.html`; confirm Play Console uses the same canonical URL before submission.
+2. `allowBackup="true"` is still enabled, but current backup/data-extraction rules exclude the main launcher prefs file and launcher databases.
    - Re-verify backup exclusions on every release when prefs or database names change.
-4. `QUERY_ALL_PACKAGES` requires strict policy justification as a launcher core requirement.
-5. Existing generated release merged-manifest artifacts appear stale versus current Gradle version metadata.
+3. `QUERY_ALL_PACKAGES` requires strict policy justification as a launcher core requirement.
+4. Existing generated release merged-manifest artifacts may be stale versus current Gradle version metadata.
    - Rebuild and review a fresh release merged manifest before final Data Safety / permissions sign-off.
-6. **Accessibility Service** (post April 2026 rejection hardening):
-   - Play Console "App content → Accessibility services" declaration: Usage = `App functionality`; Sensitive data = `No`; `isAccessibilityTool` = `No`.
-   - `accessibility_service_config.xml` MUST keep `android:description=@string/accessibility_service_desc`, `android:summary=@string/accessibility_service_summary`, and `android:canRetrieveWindowContent="false"`. Removing any of these will trigger a "missing prominent disclosure" rejection.
-   - In-app disclosure dialogs are required for App Lock, Swipe Down for Notifications, and Double Tap to Sleep before sending the user to Accessibility settings (verified in all 6 locales: values, es, hi, id, ru, pt-rBR).
-   - Prominent disclosure video must be re-uploaded to Play Console (unlisted YouTube link, not Shorts-only when avoidable) on every release that changes Accessibility-related UI.
-   - Privacy policy `Accessibility Service` section must enumerate the 3 features and confirm `canRetrieveWindowContent=false` + local-only operation.
+5. Accessibility Service has been removed from the source manifest for v1.1.16.
+   - Do not submit an Accessibility Services declaration/video for this release unless a fresh merged release manifest shows an AccessibilityService component.
+   - Store listing, screenshots, and reviewer notes must not claim App Lock, Swipe Down for Notifications, Double Tap to Sleep, or AccessibilityService usage.
 
 ## 6) Suggested Data Safety Narrative Snippets
-- "Core Launcher uses Firebase Analytics, Crashlytics, Performance Monitoring, and Remote Config only after the user enables optional telemetry consent in app settings."
-- "Core Launcher uses OpenWeather APIs for optional weather features configured by the user."
-- "Core Launcher can access contacts, calendar, notification listener, accessibility, overlay, biometric, and local media/wallpaper-related features only when enabled and required for selected functionality."
+- "Core Launcher uses Firebase Analytics, Performance Monitoring, and Remote Config according to the user's telemetry setting, and uses Crashlytics in release builds for crash diagnostics."
+- "Core Launcher uses Open-Meteo APIs for optional weather features configured by the user."
+- "Core Launcher can access contacts, calendar, notification listener, overlay, biometric, package visibility, and uninstall-intent related features only when enabled or required for selected launcher functionality."
 
 ## 7) Final Submission Gate
 Before production upload:

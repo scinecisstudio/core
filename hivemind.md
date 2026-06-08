@@ -1,5 +1,13 @@
 # Hivemind
 
+## Session Summary (2026-06-05 - v1.1.16 Release Policy Sync)
+- Updated website release/privacy materials for Core Launcher v1.1.16 after AccessibilityService removal in `C:\Users\prite\Documents\CoreApp`.
+- Updated `privacy-policy.html`: last-updated date set to June 5, 2026; removed AccessibilityService, App Lock, Swipe Down for Notifications, Double Tap to Sleep, Photos/Media, OpenWeather, and weather API-key claims; replaced weather provider wording with Open-Meteo city/geocode usage; documented telemetry opt-out behavior and release Crashlytics diagnostics.
+- Updated `index.html`: current app version now shows `1.1.16` / `versionCode 21`; removed public claims for Accessibility-backed App Lock/gestures; hidden-apps passcode/biometric and Internet Speed Monitor wording now matches current app behavior.
+- Replaced `play-data-safety-answer-sheet.md` with a clean v1.1.16 code-based sheet: Open-Meteo, no AccessibilityService declaration, no media/storage permissions, remaining sensitive permissions include Contacts, Calendar, Call Phone, Biometric, Overlay, `QUERY_ALL_PACKAGES`, `REQUEST_DELETE_PACKAGES`, and Notification Listener.
+- Replaced `play-privacy-compliance-checklist.md` with a clean v1.1.16 checklist: do not submit Accessibility Services declaration/video unless a fresh merged manifest unexpectedly shows AccessibilityService; ensure store listing and screenshots do not claim App Lock, Accessibility-backed gestures, Swipe Down, Double Tap, or AccessibilityService.
+- Android app release verification from paired `CoreApp`: bumped `app/build.gradle.kts` to `versionCode 21` / `versionName 1.1.16`; generated `app/build/outputs/bundle/release/app-release.aab`; fresh packaged release manifest confirms `versionCode="21"`, `versionName="1.1.16"`, no AccessibilityService, no `READ_MEDIA_IMAGES` / `READ_EXTERNAL_STORAGE`, and no AD_ID/AdServices permissions.
+
 ## Session Summary (2026-04-02 - Contact Page and Theme Update)
 - Added a new contact page at `contact.html` featuring GitHub, X (Twitter), LinkedIn, and email (`priteshvishwakarma@gmail.com`).
 - Updated the website's visual theme to match the updated app logo (purple theme).

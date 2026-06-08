@@ -1,6 +1,6 @@
 # Google Play Privacy Compliance Checklist
 
-Last updated: May 1, 2026
+Last updated: June 5, 2026
 Applies to: Core Launcher (`com.scinecis.launcher`)
 Repository relationship: Website project root is `C:\Users\prite\Documents\Core` and its live Android app project is `C:\Users\prite\Documents\CoreApp`.
 Execution constraint: Do not perform any write/update operation inside `C:\Users\prite\Documents\CoreApp` unless explicitly authorized by the user in that session.
@@ -18,32 +18,32 @@ Use this checklist before every Play Store submission.
 ## 2. Data Safety Form Consistency
 - [ ] Play Console Data Safety answers exactly match current app behavior.
 - [ ] All data categories used by app features and SDKs are declared.
-- [ ] Optional telemetry consent gating is reflected accurately in privacy documentation and reviewer notes.
+- [ ] Optional telemetry opt-out behavior, release Crashlytics diagnostics, and reviewer notes are aligned.
 - [ ] Encryption-in-transit answers match actual network implementation.
 - [ ] Data deletion/retention answers match implemented behavior.
 - [ ] Fresh merged manifest for the exact release build reviewed for SDK-added permissions/components before submission.
 
 ## 3. SDK and Library Transparency
 - [ ] All active SDKs are listed in privacy documentation and reflected in Data Safety.
-- [ ] Current known third-party services: Firebase Analytics, Crashlytics, Performance Monitoring, Remote Config, OpenWeather.
-- [ ] No undeclared SDKs (including transitive dependencies) process user data.
+- [ ] Current known third-party services: Firebase Analytics, Crashlytics, Performance Monitoring, Remote Config, Open-Meteo.
+- [ ] No undeclared SDKs, including transitive dependencies, process user data.
 - [ ] If `AD_ID` or AdServices permissions appear through transitive dependencies, Data Safety and policy text explicitly cover identifier/measurement behavior.
 
 ## 4. Sensitive Permission and Access Declarations
 - [ ] Contacts/Calendar/Call actions are requested only for feature-critical use.
-- [ ] Accessibility Service usage is accurately declared with required in-app disclosure/consent.
-- [ ] `accessibility_service_config.xml` retains `android:description`, `android:summary`, and `android:canRetrieveWindowContent="false"` (removing any of these triggers a Play "missing prominent disclosure" rejection).
-- [ ] Prominent disclosure video for Accessibility API is freshly recorded for the current release, uploaded as an unlisted YouTube link, and pasted into Play Console Accessibility API form.
-- [ ] In-app disclosure dialog content for Accessibility (and every other runtime/special permission) lists what the permission does, how it is used, a privacy assurance, and the exact revocation path (e.g. `Settings → Apps → Core → Permissions`).
-- [ ] In-app disclosure dialog text matches across all 6 supported locales (`values`, `values-es`, `values-hi`, `values-id`, `values-ru`, `values-pt-rBR`).
+- [ ] Fresh release merged manifest confirms no AccessibilityService component is present.
+- [ ] Do not submit an Accessibility Services declaration/video for v1.1.16 unless the fresh merged manifest unexpectedly contains AccessibilityService.
+- [ ] In-app disclosure dialog content for every remaining runtime/special permission lists what the permission does, how it is used, a privacy assurance, and the exact revocation path, for example `Settings -> Apps -> Core -> Permissions`.
+- [ ] In-app disclosure dialog text matches across all supported locales for any permission still surfaced to users.
 - [ ] Notification Listener usage is clearly explained to users.
 - [ ] Package visibility (`QUERY_ALL_PACKAGES`) usage is limited to launcher core functionality and correctly declared.
 - [ ] Overlay permission usage is optional and clearly described.
-- [ ] Biometric usage is documented consistently with app-lock behavior.
-- [ ] `READ_MEDIA_IMAGES` / legacy `READ_EXTERNAL_STORAGE` purpose is disclosed consistently for wallpaper/media-related local processing, including an explicit "no images or files uploaded, collected, or shared" assurance.
+- [ ] Biometric usage is documented consistently with the hidden-apps passcode flow.
+- [ ] Source and merged manifests confirm `READ_MEDIA_IMAGES` / legacy `READ_EXTERNAL_STORAGE` are absent unless reintroduced for a new feature.
 
 ## 5. Store Listing and In-App Consistency
 - [ ] Store listing text does not conflict with privacy policy or in-app behavior.
+- [ ] Store listing text and screenshots do not claim App Lock, Accessibility-backed gestures, Swipe Down for Notifications, Double Tap to Sleep, or AccessibilityService usage.
 - [ ] Prominent disclosures are shown before sensitive data access where required.
 - [ ] Permission rationale shown to users matches actual feature behavior.
 - [ ] Website homepage metadata (version/features/permissions) matches the current app build and does not drift from Play listing claims.
