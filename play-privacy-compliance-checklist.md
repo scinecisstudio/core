@@ -1,6 +1,6 @@
 # Google Play Privacy Compliance Checklist
 
-Last updated: June 5, 2026
+Last updated: June 12, 2026
 Applies to: Core Launcher (`com.scinecis.launcher`)
 Repository relationship: Website project root is `C:\Users\prite\Documents\Core` and its live Android app project is `C:\Users\prite\Documents\CoreApp`.
 Execution constraint: Do not perform any write/update operation inside `C:\Users\prite\Documents\CoreApp` unless explicitly authorized by the user in that session.

@@ -1,6 +1,6 @@
 # Core Launcher Play Data Safety Answer Sheet (Code-Based)
 
-Last reviewed: June 5, 2026
+Last reviewed: June 12, 2026
 Codebase audited: `C:\Users\prite\Documents\CoreApp`
 Package: `com.scinecis.launcher`
 Website distribution note: Play Store-only CTA on website (Direct APK option removed on March 1, 2026).
@@ -95,7 +95,7 @@ Use these if shipping current code unchanged.
 3. `QUERY_ALL_PACKAGES` requires strict policy justification as a launcher core requirement.
 4. Existing generated release merged-manifest artifacts may be stale versus current Gradle version metadata.
    - Rebuild and review a fresh release merged manifest before final Data Safety / permissions sign-off.
-5. Accessibility Service has been removed from the source manifest for v1.1.16.
+5. Accessibility Service has been removed from the source manifest for v1.1.17.
    - Do not submit an Accessibility Services declaration/video for this release unless a fresh merged release manifest shows an AccessibilityService component.
    - Store listing, screenshots, and reviewer notes must not claim App Lock, Swipe Down for Notifications, Double Tap to Sleep, or AccessibilityService usage.
 
